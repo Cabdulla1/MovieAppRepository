@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "{id}"
 @model MovieWebApp.Pages.Movies.DetailsModel
 
 @{
@@ -7,37 +7,18 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Title)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Title)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.ReleaseDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.ReleaseDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Genre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Genre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Price)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-6">
+        @await Html.PartialAsync("_MovieDetails",Model)
+    </div>
+    
+    <div class="col-6">
+        @await Component.InvokeAsync("GenreCount",new {genre = Model.Movie.Genre});
+    </div>
 </div>
+
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Movie?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Movie?.ID" class="btn btn-primary">Edit</a> |
+    <a asp-page="./Index" class="btn btn-warning">Back to List</a>
 </div>

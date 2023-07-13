@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/Movies/List"
 @model MovieWebApp.Pages.Movies.IndexModel
 
 @{
@@ -9,6 +9,7 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+    <a asp-page="/Movies" asp-route-name="123">Go to new page</a>
 </p>
 <table class="table table-bordered">
     <thead>
